@@ -1,4 +1,4 @@
-# illustomb（イラスト墓地
+# illustomb（イラスト墓地）
 
 ## サイト概要
 
