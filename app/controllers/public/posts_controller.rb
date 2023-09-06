@@ -5,20 +5,22 @@ class Public::PostsController < ApplicationController
 
   def create
     @post = Post.new(post_params)
-    @post.end_user_id = current_user.id
-  
+    @post.end_user_id = current_end_user.id
+
     if @post.save
-      redirect_to root_path
+      redirect_to public_posts_path
     else
-      render :new # Re-render the new form if validation fails
+      render :new
     end
   end
 
 
   def index
+    @posts = Post.all
   end
 
   def show
+    @post = Post.find(params[:id])
   end
 
 
