@@ -1,6 +1,7 @@
 Rails.application.routes.draw do
   namespace :public do
-    resources :posts, only: [:new, :create, :index, :show]
+    resources :end_users, only: [:show, :edit, :update]
+    resources :posts, only: [:new, :create, :index, :show, :destroy]
   end
   # 管理者用.
   devise_for :admin, skip: [:registrations, :passwords] ,controllers: {

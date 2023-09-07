@@ -14,12 +14,21 @@
     <header>
     <% if end_user_signed_in? %>
       <li>
+        <%= link_to "マイページ", public_end_user_path(current_end_user) %>
+      </li>
+      <li>
         <%= link_to '投稿フォーム', new_public_post_path %>
       </li>
       <li>
         <%= link_to "ログアウト", destroy_end_user_session_path, method: :delete %>
       </li>
     <% else %>
+      <li>
+        <%= link_to "About", homes_about_path %>
+      </li>
+      <li>
+        <%= link_to "イラスト一覧", public_posts_path %>
+      </li>
       <li>
         <%= link_to "新規登録", new_end_user_registration_path %>
       </li>

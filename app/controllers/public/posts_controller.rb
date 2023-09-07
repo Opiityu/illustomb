@@ -23,6 +23,18 @@ class Public::PostsController < ApplicationController
     @post = Post.find(params[:id])
   end
 
+  def destroy
+    post = Post.find_by(id: params[:id])
+
+    if post
+      post.destroy
+      redirect_to public_posts_path
+    else
+      flash[:error] = "Post not found"
+      redirect_to public_posts_path
+    end
+  end
+
 
   private
 

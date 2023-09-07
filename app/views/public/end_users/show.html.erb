@@ -1,0 +1,17 @@
+<div>
+  <h3><%= @end_user.name %></h3>
+  <p><%= link_to "プロフィール編集", edit_public_end_user_path %> </p>
+</div>
+
+
+
+<% @posts.each do |post| %>
+<div>
+  <%= link_to public_post_path(post.id) do %>
+    <%= image_tag post.get_image %>
+  <% end %>
+  <p>イラスト名：<%= post.name %></p>
+  <p>説明：<%= post.caption %></p>
+  <p>ユーザーネーム：<%= post.end_user.name %></p>
+</div>
+<% end %>
