@@ -2,7 +2,7 @@ class Public::EndUsersController < ApplicationController
   before_action :find_end_user, only: [:show, :edit, :update]
 
   def show
-    @posts = @end_user.posts
+    @posts = @end_user.posts.page(params[:page])
   end
 
   def edit
