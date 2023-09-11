@@ -1,0 +1,2 @@
+module Public::WhiesHelper
+end

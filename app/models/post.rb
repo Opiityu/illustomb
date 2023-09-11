@@ -1,9 +1,10 @@
 class Post < ApplicationRecord
   has_one_attached :image
   belongs_to :end_user
-  
-  
-  
+  has_many :whies, dependent: :destroy
+
+
+
   def get_image
     unless image.attached?
       file_path = Rails.root.join('app/assets/images/no_image.jpg')

@@ -2,6 +2,10 @@ Rails.application.routes.draw do
   namespace :public do
     resources :end_users, only: [:show, :edit, :update]
     resources :posts, only: [:new, :create, :index, :show, :destroy]
+
+    post "why/:id" => "whies#create", as: "create_why"
+    delete "why/:id" => "whies#destroy", as: "destroy_why"
+
   end
   # 管理者用.
   devise_for :admin, skip: [:registrations, :passwords] ,controllers: {
