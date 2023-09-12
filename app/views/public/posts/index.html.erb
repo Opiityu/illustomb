@@ -1,13 +1,20 @@
-<h1>イラスト一覧</h1>
-
-<% @posts.each do |post| %>
-  <div>
-    <%= link_to public_post_path(post.id) do %>
-      <%= image_tag post.get_image %>
-    <% end %>
-    <p>イラスト名：<%= post.name %></p>
-    <p>説明：<%= post.caption %></p>
-    <p>ユーザーネーム：<%= post.end_user.name %></p>
+<div class="cover-index">
+  <div class="container">
+    <h1 class="font-weight-normal mt-3 text-center">投稿一覧</h1>
+    <div class="row justify-content-center">
+      <% @posts.each do |post| %>
+      <div class="col-md-4"> <!-- Adjust the column size as needed -->
+        <div class="one-post">
+          <%= link_to public_post_path(post.id) do %>
+            <%= image_tag post.get_image, size: '300x200' %>
+          <% end %>
+          <p>イラスト名：<%= post.name %></p>
+          <p>説明：<%= post.caption %></p>
+          <p>ユーザーネーム：<%= post.end_user.name %></p>
+        </div>
+      </div>
+      <% end %>
+    </div>
   </div>
-<% end %>
+</div>
 <%= paginate @posts %>
