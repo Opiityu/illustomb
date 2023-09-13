@@ -20,7 +20,7 @@ class Public::EndUsersController < ApplicationController
   private
 
   def end_user_params
-    params.require(:end_user).permit(:name)
+    params.require(:end_user).permit(:name, :profile_image)
   end
 
   def find_end_user

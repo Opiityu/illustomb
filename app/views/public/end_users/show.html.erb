@@ -1,18 +1,26 @@
 <div>
+  <%= image_tag @end_user.get_profile_image(100,100) %>
   <h3><%= @end_user.name %></h3>
   <p><%= link_to "プロフィール編集", edit_public_end_user_path %> </p>
 </div>
 
 
-
-<% @posts.each do |post| %>
-<div>
-  <%= link_to public_post_path(post.id) do %>
-    <%= image_tag post.get_image %>
-  <% end %>
-  <p>イラスト名：<%= post.name %></p>
-  <p>説明：<%= post.caption %></p>
-  <p>ユーザーネーム：<%= post.end_user.name %></p>
+<div class="cover-index">
+  <div class="container">
+    <h1 class="font-weight-normal mt-3 text-center">マイイラスト</h1>
+    <div class="row justify-content-center">
+      <% @posts.each do |post| %>
+      <div class="col-md-4">
+        <div class="one-post">
+          <%= link_to public_post_path(post.id) do %>
+            <%= image_tag post.get_image, size: '300x200' %>
+          <% end %>
+          <p>イラスト名：<%= post.name %></p>
+          <p>説明：<%= post.caption %></p>
+        </div>
+      </div>
+      <% end %>
+    </div>
+  </div>
 </div>
-<% end %>
 <%= paginate @posts %>
