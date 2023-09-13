@@ -2,6 +2,7 @@
   <%= image_tag @end_user.get_profile_image(100,100) %>
   <h3><%= @end_user.name %></h3>
   <p><%= link_to "プロフィール編集", edit_public_end_user_path %> </p>
+  <p><%= link_to "プロフィール削除", public_check_path %> </p>
 </div>
 
 

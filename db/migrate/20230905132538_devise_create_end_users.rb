@@ -37,6 +37,7 @@ class DeviseCreateEndUsers < ActiveRecord::Migration[6.1]
       
       ###追加カラム
       t.string :name, null: false
+      t.boolean :is_deleted, default: false, null: false
       
       
     end
