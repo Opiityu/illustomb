@@ -5,15 +5,19 @@
       <% @posts.each do |post| %>
       <% if post.end_user %>
       <div class="col-md-4">
-        <div class="one-post">
-          <%= link_to public_post_path(post.id) do %>
-            <%= image_tag post.get_image, size: '300x200' %>
-          <% end %>
-          <p>イラスト名：<%= post.name %></p>
-          <p>説明：<%= post.caption %></p>
-          <p>ユーザーネーム：<%= post.end_user.name %></p>
-        </div>
-      </div>
+  <div class="one-post">
+    <%= link_to public_post_path(post.id) do %>
+      <%= image_tag post.get_image, size: '300x200' %>
+    <% end %>
+    <p>イラスト名：<%= post.name %></p>
+    <p>説明：<%= post.caption %></p>
+    <p>ユーザーネーム：<%= post.end_user.name %></p>
+
+    <!-- Render the like/unlike buttons partial here -->
+    <%= render partial: "public/whies/why", locals: { post: post } %>
+  </div>
+</div>
+
       <% end %>
       <% end %>
     </div>

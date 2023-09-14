@@ -1,6 +1,6 @@
 <div class="swiper">
   <div class="swiper-wrapper">
-    <% @posts.each do |post| %>
+    <% @posts.sort_by(&:created_at).reverse.take(3).each do |post| %>
       <div class="swiper-slide">
         <%= image_tag post.get_image, size: '400x400' %>
       </div>
