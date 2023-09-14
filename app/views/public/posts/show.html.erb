@@ -1,13 +1,23 @@
-<div>
-  <%= image_tag @post.get_image %>
-  <p>イラスト名：<%= @post.name %></p>
-  <p>説明:<%= @post.caption %></p>
-  <p>ユーザーネーム:<%= @post.end_user.name %></p>
-  <p>埋葬日：<%= @post.created_at.strftime('%Y/%m/%d') %></p>
-  <% if @post.end_user == current_end_user %>
-    <%= link_to "削除", public_post_path(@post), method: :delete %>
-  <% end %>
-  <div id="likes_buttons_<%= @post.id %>">
-  <%= render partial: "public/whies/why", locals: { post: @post } %>
-　</div>
+<div class="container mt-5">
+  <div class="row">
+    <div class="col-md-6 mx-auto">
+      <div class="card">
+        <%= image_tag @post.get_image, class: 'card-img-top' %>
+        <div class="card-body">
+          <h5 class="card-title">イラスト名: <%= @post.name %></h5>
+          <p class="card-text">説明: <%= @post.caption %></p>
+          <p class="card-text">ユーザーネーム: <%= @post.end_user.name %></p>
+          <p class="card-text">埋葬日: <%= @post.created_at.strftime('%Y/%m/%d') %></p>
+        </div>
+        <% if @post.end_user == current_end_user %>
+          <div class="card-footer">
+            <%= link_to "削除", public_post_path(@post), method: :delete, class: 'btn btn-danger btn-sm' %>
+          </div>
+        <% end %>
+        <div class="card-footer" id="likes_buttons_<%= @post.id %>">
+          <%= render partial: "public/whies/why", locals: { post: @post } %>
+        </div>
+      </div>
+    </div>
+  </div>
 </div>
