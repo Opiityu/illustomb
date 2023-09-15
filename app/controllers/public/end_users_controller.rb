@@ -6,13 +6,13 @@ class Public::EndUsersController < ApplicationController
   end
 
   def edit
+    @end_user = current_end_user
   end
 
   def update
     if @end_user.update(end_user_params)
       redirect_to public_end_user_path(@end_user)
     else
-      # Handle validation errors or other errors here
       render :edit
     end
   end

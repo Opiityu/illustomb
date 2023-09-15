@@ -9,6 +9,8 @@ class EndUser < ApplicationRecord
   has_many :whies, dependent: :destroy
 
   has_one_attached :profile_image
+  
+  
 
 
   ###なんで？機能実装時に追加

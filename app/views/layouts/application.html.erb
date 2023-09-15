@@ -65,6 +65,19 @@
         <%= link_to "ログイン", new_end_user_session_path, class: 'nav-link text-dark' %>
       </li>
     <% end %>
+    <% if end_user_signed_in? %>
+  <li class="nav-item">
+    <a href="<%= public_end_user_path(current_end_user) %>" class="nav-link">
+      <% if current_end_user.profile_image.attached? %>
+        <%= image_tag(current_end_user.profile_image, class: 'rounded-circle', size: '50x50') %>
+      <% else %>
+        <%= image_tag('default-profile-image.png', class: 'rounded-circle', size: '50x50') %>
+      <% end %>
+      <%= current_end_user.name %>
+    </a>
+  </li>
+<% end %>
+
     </ul>
     </div>
     </div>

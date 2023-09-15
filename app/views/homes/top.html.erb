@@ -1,14 +1,33 @@
-<div class="swiper">
-  <div class="swiper-wrapper">
-    <% @posts.sort_by(&:created_at).reverse.take(3).each do |post| %>
-      <div class="swiper-slide">
-        <%= image_tag post.get_image, size: '400x400' %>
+<div class="container">
+  <div class="row">
+    <div class="col-md-8">
+      <div class="swiper">
+        <div class="swiper-wrapper">
+          <% @posts.sort_by(&:created_at).reverse.take(3).each do |post| %>
+            <div class="swiper-slide">
+              <%= image_tag post.get_image, class: 'img-fluid', size: '400x400' %>
+            </div>
+          <% end %>
+        </div>
+        <!-- Swiper Pagination and Navigation -->
+        <div class="swiper-pagination"></div>
+        <div class="swiper-button-prev"></div>
+        <div class="swiper-button-next"></div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<% liked_posts = @posts.select { |post| post.whies.count > 0 } %>
+<div class="most-liked-posts">
+  <h2 class="text-center">Most Liked Posts</h2> 
+  <div class="row">
+    <% liked_posts.sort_by { |post| -post.whies.count }.take(3).each do |post| %>
+      <div class="col-4">
+        <%= image_tag post.get_image, class: 'img-fluid', size: '400x400' %>
+        <p>Likes: <%= post.whies.count %></p>
       </div>
     <% end %>
   </div>
-  <!-- ページネーションの要素 -->
-  <div class="swiper-pagination"></div>
-  <!-- ナビゲーションボタン （前、次） -->
-  <div class="swiper-button-prev"></div>
-  <div class="swiper-button-next"></div>
 </div>
+
