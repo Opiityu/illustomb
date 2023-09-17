@@ -10,7 +10,7 @@
     <script src="https://kit.fontawesome.com/e8eca068ae.js" crossorigin="anonymous"></script>
     <%= stylesheet_pack_tag 'application', media: 'all', 'data-turbolinks-track': 'reload' %>
     <%= javascript_pack_tag 'application', 'data-turbolinks-track': 'reload' %>
-
+    
     <!--swiper導入時に追加-->
     <!-- Include Swiper CSS -->
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/swiper@8/swiper-bundle.min.css" />
@@ -30,7 +30,7 @@
     <header class="shadow-sm">
       <nav class="navbar navbar-expand-lg navbar-light">
         <div class="container">
-          <a class="navbar-brand p-3" href="/"><%= image_tag('logo.png', size: '70x70') %></a>
+          <a class="navbar-brand p-3" href="/"><%= image_tag('logo.png', size: '70x70') %>illustomb~ボツ絵の墓場~</a>
           <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNavDropdown"
                         aria-controls="navbarNavDropdown" aria-expanded="false" aria-label="Toggle navigation">
             <span class="navbar-toggler-icon"></span>
@@ -46,10 +46,14 @@
         <%= link_to "マイページ", public_end_user_path(current_end_user), class: 'nav-link text-dark' %>
       </li>
       <li class="nav-item">
-        <%= link_to '投稿フォーム', new_public_post_path, class: 'nav-link text-dark' %>
+        <%= link_to '投稿', new_public_post_path, class: 'nav-link text-dark' %>
       </li>
       <li class="nav-item">
         <%= link_to "ログアウト", destroy_end_user_session_path, method: :delete, class: 'nav-link text-dark' %>
+      </li>
+    <% elsif admin_signed_in? %>
+      <li class="nav-item">
+        <%= link_to "イラスト一覧", adomin_posts_path, class: 'nav-link text-dark' %>
       </li>
     <% else %>
       <li class="nav-item">
@@ -83,7 +87,9 @@
     </div>
     </nav>
   </header>
-    <%= yield %>
+  <main class="bg-light">
+      <%= yield %>
+    </main>
     <footer class="bg-dark text-white pt-5 pb-4">
       <div class="container">
         <div class="row no-gutters">

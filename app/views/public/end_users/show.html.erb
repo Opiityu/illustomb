@@ -1,15 +1,20 @@
 <div class="container mt-4">
   <div class="row">
     <div class="col-md-4 text-center mx-auto">
-      <%= image_tag @end_user.get_profile_image(100, 100), class: 'img-fluid rounded-circle' %>
+      <%= image_tag @end_user.get_profile_image(100, 100), class: 'img-thumbnail rounded-circle', width: '100', height: '100' %>
       <h3 class="mt-3"><%= @end_user.name %></h3>
       <div class="btn-group mt-3">
-        <%= link_to "プロフィール編集", edit_public_end_user_path, class: 'btn btn-primary' %>
-        <%= link_to "プロフィール削除", public_check_path, class: 'btn btn-danger' %>
+        <%= link_to edit_public_end_user_path, class: 'btn btn-primary' do %>
+          <i class="fas fa-edit"></i> プロフィール編集
+        <% end %>
+        <%= link_to public_check_path, class: 'btn btn-danger' do %>
+          <i class="fas fa-trash-alt"></i> プロフィール削除
+        <% end %>
       </div>
     </div>
   </div>
 </div>
+
 
 
 <div class="container mt-4">
@@ -17,13 +22,18 @@
     <h1 class="font-weight-normal mt-3 text-center">マイイラスト</h1>
     <div class="row justify-content-center">
       <% @posts.each do |post| %>
-      <div class="col-md-6 mb-4">
-        <div class="one-post">
+      <div class="col-md-4 mb-4"> <!-- Adjust the column size (e.g., col-md-4) -->
+        <div class="card">
           <%= link_to public_post_path(post.id) do %>
-            <%= image_tag post.get_image, size: '300x200' %>
+            <%= image_tag post.get_image, class: 'card-img-top', alt: 'Post Image' %>
           <% end %>
-          <p class="mt-2">イラスト名：<%= post.name %></p>
-          <p>説明：<%= post.caption %></p>
+          <div class="card-body">
+            <p class="card-text">イラスト名：<%= post.name %></p>
+            <p class="card-text">説明：<%= post.caption %></p>
+            <div id="likes_buttons_<%= post.id %>">
+              <%= render partial: "public/whies/why", locals: { post: post } %>
+            </div>
+          </div>
         </div>
       </div>
       <% end %>
@@ -31,3 +41,4 @@
   </div>
   <%= paginate @posts %>
 </div>
+

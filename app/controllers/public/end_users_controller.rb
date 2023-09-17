@@ -3,6 +3,7 @@ class Public::EndUsersController < ApplicationController
 
   def show
     @posts = @end_user.posts.page(params[:page])
+    @post = current_end_user
   end
 
   def edit

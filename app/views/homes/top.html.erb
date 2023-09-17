@@ -5,7 +5,9 @@
         <div class="swiper-wrapper">
           <% @posts.sort_by(&:created_at).reverse.take(3).each do |post| %>
             <div class="swiper-slide">
-              <%= image_tag post.get_image, class: 'img-fluid', size: '400x400' %>
+              <%= link_to public_post_path(post), class: 'post-link' do %>
+                <%= image_tag post.get_image, class: 'img-fluid', size: '400x400' %>
+              <% end %>
             </div>
           <% end %>
         </div>
@@ -18,16 +20,24 @@
   </div>
 </div>
 
+
+
 <% liked_posts = @posts.select { |post| post.whies.count > 0 } %>
-<div class="most-liked-posts">
-  <h2 class="text-center">Most Liked Posts</h2> 
+<% liked_posts = @posts.select { |post| post.whies.count > 0 } %>
+<div class="most-liked-posts text-center">
+  <h2 class="text-center">トップofボツ絵</h2>
   <div class="row">
-    <% liked_posts.sort_by { |post| -post.whies.count }.take(3).each do |post| %>
-      <div class="col-4">
-        <%= image_tag post.get_image, class: 'img-fluid', size: '400x400' %>
-        <p>Likes: <%= post.whies.count %></p>
+    <% liked_posts.sort_by { |post| -post.whies.count }.take(20).each do |post| %>
+      <div class="col-2">
+        <div class="card mb-3">
+          <%= link_to public_post_path(post), class: 'post-link' do %>
+            <%= image_tag post.get_image, class: 'card-img-top', alt: 'Post Image' %>
+          <% end %>
+          <div class="card-body">
+            <p class="card-text">なんで？ x <%= post.whies.count %></p>
+          </div>
+        </div>
       </div>
     <% end %>
   </div>
 </div>
-

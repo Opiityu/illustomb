@@ -1,10 +1,11 @@
 .swiper {
-  width: 600px;
-  height: 300px;
+  margin: 0 auto;
 }
+
+
+
 
 :root {
   --swiper-navigation-color: #ffffff;
   --swiper-pagination-color: #ffffff;
 }
-
