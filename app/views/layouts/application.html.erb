@@ -10,7 +10,7 @@
     <script src="https://kit.fontawesome.com/e8eca068ae.js" crossorigin="anonymous"></script>
     <%= stylesheet_pack_tag 'application', media: 'all', 'data-turbolinks-track': 'reload' %>
     <%= javascript_pack_tag 'application', 'data-turbolinks-track': 'reload' %>
-    
+
     <!--swiper導入時に追加-->
     <!-- Include Swiper CSS -->
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/swiper@8/swiper-bundle.min.css" />
@@ -53,7 +53,13 @@
       </li>
     <% elsif admin_signed_in? %>
       <li class="nav-item">
-        <%= link_to "イラスト一覧", adomin_posts_path, class: 'nav-link text-dark' %>
+        <%= link_to "イラスト一覧", admin_posts_path, class: 'nav-link text-dark' %>
+      </li>
+      <li class="nav-item">
+        <%= link_to "会員一覧", admin_end_users_path, class: 'nav-link text-dark' %>
+      </li>
+      <li class="nav-item">
+        <%= link_to "ログアウト", destroy_admin_session_path, method: :delete, class: 'nav-link text-dark' %>
       </li>
     <% else %>
       <li class="nav-item">
@@ -104,7 +110,7 @@
                 <a href="" title="About" class="text-white-50"></a>
               </li>
               <li>
-                <a href="" title="License informations" class="text-white-50">プライバシーポリシー</a>
+                <a href="" title="License informations" class="text-white-50">ポリシー</a>
               </li>
             </ul>
           </div>
