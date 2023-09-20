@@ -1,139 +1,133 @@
 <!DOCTYPE html>
 <html>
-  <head>
-    <title>Illustomb</title>
-    <meta name="viewport" content="width=device-width,initial-scale=1">
-    <%= csrf_meta_tags %>
-    <%= csp_meta_tag %>
-    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+<head>
+  <title>Illustomb</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <%= csrf_meta_tags %>
+  <%= csp_meta_tag %>
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+  
+  <script src="https://kit.fontawesome.com/e8eca068ae.js" crossorigin="anonymous"></script>
+  <%= stylesheet_pack_tag 'application', media: 'all', 'data-turbolinks-track': 'reload' %>
+  <%= javascript_pack_tag 'application', 'data-turbolinks-track': 'reload' %>
 
-    <script src="https://kit.fontawesome.com/e8eca068ae.js" crossorigin="anonymous"></script>
-    <%= stylesheet_pack_tag 'application', media: 'all', 'data-turbolinks-track': 'reload' %>
-    <%= javascript_pack_tag 'application', 'data-turbolinks-track': 'reload' %>
+  <!--swiper導入時に追加-->
+  <!-- Include Swiper CSS -->
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/swiper@8/swiper-bundle.min.css" />
+  <script src="https://cdn.jsdelivr.net/npm/swiper@8/swiper-bundle.min.js"></script>
 
-    <!--swiper導入時に追加-->
-    <!-- Include Swiper CSS -->
-    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/swiper@8/swiper-bundle.min.css" />
+  <!-- Include your custom CSS file -->
+  <link rel="stylesheet" href="/assets/style.css" />
 
-    <script src="https://cdn.jsdelivr.net/npm/swiper@8/swiper-bundle.min.js"></script>
+  <%= javascript_pack_tag 'script' %>
+</head>
 
-
-    <!-- Include your custom CSS file -->
-    <link rel="stylesheet" href="/assets/style.css" />
-
-    <%= javascript_pack_tag 'script' %>
-
-
-  </head>
-
-  　<body class="d-flex flex-column vh-100">
-    <header class="shadow-sm">
-      <nav class="navbar navbar-expand-lg navbar-light">
-        <div class="container">
-          <a class="navbar-brand p-3" href="/"><%= image_tag('logo.png', size: '70x70') %>illustomb~ボツ絵の墓場~</a>
-          <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNavDropdown"
-                        aria-controls="navbarNavDropdown" aria-expanded="false" aria-label="Toggle navigation">
-            <span class="navbar-toggler-icon"></span>
-          </button>
-          <div class="collapse navbar-collapse" id="navbarNavDropdown">
-            <ul class="navbar-nav ml-auto">
-
-    <% if end_user_signed_in? %>
-      <li class="nav-item">
-        <%= link_to "ボツ絵一覧", public_posts_path, class: 'nav-link text-dark' %>
-      </li>
-      <li class="nav-item">
-        <%= link_to "マイページ", public_end_user_path(current_end_user), class: 'nav-link text-dark' %>
-      </li>
-      <li class="nav-item">
-        <%= link_to '埋葬', new_public_post_path, class: 'nav-link text-dark' %>
-      </li>
-      <li class="nav-item">
-        <%= link_to "ログアウト", destroy_end_user_session_path, method: :delete, class: 'nav-link text-dark' %>
-      </li>
-    <% elsif admin_signed_in? %>
-      <li class="nav-item">
-        <%= link_to "ボツ絵一覧", admin_posts_path, class: 'nav-link text-dark' %>
-      </li>
-      <li class="nav-item">
-        <%= link_to "会員一覧", admin_end_users_path, class: 'nav-link text-dark' %>
-      </li>
-      <li class="nav-item">
-        <%= link_to "ログアウト", destroy_admin_session_path, method: :delete, class: 'nav-link text-dark' %>
-      </li>
-    <% else %>
-      <li class="nav-item">
-        <%= link_to "About", homes_about_path, class: 'nav-link text-dark' %>
-      </li>
-      <li class="nav-item">
-        <%= link_to "イラスト一覧", public_posts_path, class: 'nav-link text-dark' %>
-      </li>
-      <li class="nav-item">
-        <%= link_to "新規登録", new_end_user_registration_path, class: 'nav-link text-dark' %>
-      </li>
-      <li class="nav-item">
-        <%= link_to "ログイン", new_end_user_session_path, class: 'nav-link text-dark' %>
-      </li>
-    <% end %>
-    <% if end_user_signed_in? %>
-  <li class="nav-item">
-    <a href="<%= public_end_user_path(current_end_user) %>" class="nav-link">
-      <% if current_end_user.profile_image.attached? %>
-        <%= image_tag(current_end_user.profile_image, class: 'rounded-circle', size: '50x50') %>
-      <% else %>
-        <%= image_tag('default-profile-image.png', class: 'rounded-circle', size: '50x50') %>
-      <% end %>
-      <%= current_end_user.name %>
-    </a>
-  </li>
-<% end %>
-
-    </ul>
-    </div>
-    </div>
+<body class="d-flex flex-column vh-100">
+  <header class="shadow-sm">
+    <nav class="navbar navbar-expand-lg navbar-light">
+      <div class="container">
+        <a class="navbar-brand p-3" href="/">
+          <%= image_tag('logo.png', size: '70x70') %>illustomb~ボツ絵の墓場~
+        </a>
+        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNavDropdown"
+          aria-controls="navbarNavDropdown" aria-expanded="false" aria-label="Toggle navigation">
+          <span class="navbar-toggler-icon"></span>
+        </button>
+        <div class="collapse navbar-collapse" id="navbarNavDropdown">
+          <ul class="navbar-nav ml-auto">
+            <% if end_user_signed_in? %>
+            <li class="nav-item">
+              <%= link_to '<i class="fas fa-ghost"></i> ボツ絵墓場'.html_safe, public_posts_path, class: 'nav-link text-dark' %>
+            </li>
+            <li class="nav-item">
+              <%= link_to '<i class="fas fa-clipboard-user"></i> マイページ'.html_safe, public_end_user_path(current_end_user), class: 'nav-link text-dark' %>
+            </li>
+            <li class="nav-item">
+              <%= link_to '<i class="fas fa-person-digging"></i> 埋葬'.html_safe, new_public_post_path, class: 'nav-link text-dark' %>
+            </li>
+            <li class="nav-item">
+              <%= link_to '<i class="fa-solid fa-right-from-bracket"></i> ログアウト'.html_safe, destroy_end_user_session_path, method: :delete, class: 'nav-link text-dark' %>
+            </li>
+            <% elsif admin_signed_in? %>
+            <li class="nav-item">
+              <%= link_to "ボツ絵墓場", admin_posts_path, class: 'nav-link text-dark' %>
+            </li>
+            <li class="nav-item">
+              <%= link_to "会員一覧", admin_end_users_path, class: 'nav-link text-dark' %>
+            </li>
+            <li class="nav-item">
+              <%= link_to "ログアウト", destroy_admin_session_path, method: :delete, class: 'nav-link text-dark' %>
+            </li>
+            <% else %>
+            <li class="nav-item">
+              <%= link_to '<i class="fas fa-question"></i> このサイトについて'.html_safe, homes_about_path, class: 'nav-link text-dark' %>
+            </li>
+            <li class="nav-item">
+              <%= link_to '<i class="fas fa-ghost"></i> ボツ絵墓場'.html_safe, public_posts_path, class: 'nav-link text-dark' %>
+            </li>
+            <li class="nav-item">
+              <%= link_to '<i class="far fa-square-plus"></i> 新規登録'.html_safe, new_end_user_registration_path, class: 'nav-link text-dark' %>
+            </li>
+            <li class="nav-item">
+              <%= link_to '<i class="fa-solid fa-right-to-bracket"></i> ログイン'.html_safe, new_end_user_session_path, class: 'nav-link text-dark' %>
+            </li>
+            <% end %>
+            <% if end_user_signed_in? %>
+            <li class="nav-item">
+              <a href="<%= public_end_user_path(current_end_user) %>" class="nav-link">
+                <% if current_end_user.profile_image.attached? %>
+                <%= image_tag(current_end_user.profile_image, class: 'rounded-circle', size: '50x50') %>
+                <% else %>
+                <%= image_tag('default-profile-image.png', class: 'rounded-circle', size: '50x50') %>
+                <% end %>
+                <%= current_end_user.name %>
+              </a>
+            </li>
+            <% end %>
+          </ul>
+        </div>
+      </div>
     </nav>
   </header>
   <main class="bg-light">
     <% if end_user_signed_in? %>
-  <div class="container">
-    <div class="row justify-content-end">
-      <div class="col-md-6">
-        <div class="search_form">
-          <%= form_with url: search_path, local: true, method: :get do |f| %>
-            <%= f.search_field :word, value: params[:word] %>
-            <%= f.select :search, options_for_select([["完全一致","perfect_match"], ["前方一致","forward_match"],  ["後方一致","backward_match"], ["部分一致","partial_match"]]) %>
-            <%= f.submit "検索", class: "btn btn-primary" %>
-          <% end %>
+    <div class="container">
+      <div class="row justify-content-end">
+        <div class="col-md-6">
+          <div class="search_form">
+            <%= form_with url: search_path, local: true, method: :get do |f| %>
+              <%= f.search_field :word, value: params[:word] %>
+              <%= f.select :search, options_for_select([["完全一致","perfect_match"], ["前方一致","forward_match"], ["後方一致","backward_match"], ["部分一致","partial_match"]]) %>
+              <%= f.submit "検索", class: "btn btn-primary" %>
+            <% end %>
+          </div>
         </div>
       </div>
     </div>
-  </div>
-<% end %>
-
-
-      <%= yield %>
-    </main>
-    <footer class="bg-dark text-white pt-5 pb-4">
-      <div class="container">
-        <div class="row no-gutters">
-          <div class="col-md-4">
-            <p>イラストたちの墓場</p>
-            <%= image_tag('logo.png', size: '70x70') %>
-          </div>
-          <div class="col-md-8">
-            <h6 class="text-white mt-2 mb-3">Link</h6>
-            <ul class="p-0 list-unstyled">
-              <li>
-                <a href="" title="About" class="text-white-50"></a>
-              </li>
-              <li>
-                <a href="" title="License informations" class="text-white-50">ポリシー</a>
-              </li>
-            </ul>
-          </div>
+    <% end %>
+    <%= yield %>
+  </main>
+  <footer class="bg-dark text-white pt-5 pb-4">
+    <div class="container">
+      <div class="row no-gutters">
+        <div class="col-md-4">
+          <p>イラストたちの墓場</p>
+          <%= image_tag('logo.png', size: '70x70') %>
+        </div>
+        <div class="col-md-8">
+          <h6 class="text-white mt-2 mb-3">Link</h6>
+          <ul class="p-0 list-unstyled">
+            <li>
+              <a href="" title="About" class="text-white-50"></a>
+            </li>
+            <li>
+              <a href="" title="License informations" class="text-white-50">ポリシー</a>
+            </li>
+          </ul>
         </div>
       </div>
-    </footer>
-    <%= javascript_pack_tag 'script' %>
-  </body>
+    </div>
+  </footer>
+  <%= javascript_pack_tag 'script' %>
+</body>
 </html>
