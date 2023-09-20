@@ -9,8 +9,24 @@ class EndUser < ApplicationRecord
   has_many :whies, dependent: :destroy
 
   has_one_attached :profile_image
-  
-  
+
+  # 検索方法分岐
+  def self.looks(search, word)
+    case search
+    when "perfect_match"
+      where("name LIKE ?", "#{word}")
+    when "forward_match"
+      where("name LIKE ?", "#{word}%")
+    when "backward_match"
+      where("name LIKE ?", "%#{word}")
+    when "partial_match"
+      where("name LIKE ?", "%#{word}%")
+    else
+      all
+    end
+  end
+
+
 
 
   ###なんで？機能実装時に追加

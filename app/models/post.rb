@@ -5,6 +5,22 @@ class Post < ApplicationRecord
 
 
 
+  def self.looks(search, word)
+    case search
+    when "perfect_match"
+      where("name LIKE?","#{word}")
+    when "forward_match"
+      where("name LIKE?","#{word}%")
+    when "backward_match"
+      where("name LIKE?","%#{word}")
+    when "partial_match"
+      where("name LIKE?","%#{word}%")
+    else
+      all
+    end
+  end
+
+
   def get_image
     unless image.attached?
       file_path = Rails.root.join('app/assets/images/no_image.jpg')

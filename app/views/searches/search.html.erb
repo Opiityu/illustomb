@@ -1,0 +1,22 @@
+<div class="container">
+  <h2>検索結果</h2>
+
+  <% if @posts.present? %>
+    <div class="row">
+      <% @posts.each do |post| %>
+        <div class="col-md-4">
+          <div class="card mb-4">
+            <%= link_to public_post_path(post.id) do %>
+              <%= image_tag post.get_image, class: "card-img-top" %>
+            <% end %>
+            <div class="card-body">
+              <h5 class="card-title"><%= post.name %></h5>
+            </div>
+          </div>
+        </div>
+      <% end %>
+    </div>
+  <% else %>
+    <p>見つかりませんでした。</p>
+  <% end %>
+</div>

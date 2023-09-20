@@ -4,14 +4,14 @@
       <%= link_to public_destroy_why_path(post), method: :DELETE, remote: true do %>
         <i class="fa fa-heart unlike-btn"></i>
       <% end %>
-        <%= post.whies.count %> なんで!?
+        <%= post.whies.count %> R.I.P
     </td>
 <% else %>
     <td>
       <%= link_to public_create_why_path(post), method: :POST, remote: true do %>
         <i class="fa fa-heart like-btn"></i>
       <% end %>
-        <%= post.whies.count %> なんで!?
+        <%= post.whies.count %> R.I.P
     </td>
   <% end %>
 <% end %>
