@@ -71,6 +71,10 @@
             <li class="nav-item">
               <%= link_to '<i class="fa-solid fa-right-to-bracket"></i> ログイン'.html_safe, new_end_user_session_path, class: 'nav-link text-dark' %>
             </li>
+            <li class="nav-item">
+            <!-- Add a link for Guest Login -->
+            <%= link_to 'Guest Login', public_guest_login_path, class: 'nav-link text-dark' %>
+          </li>
             <% end %>
             <% if end_user_signed_in? %>
             <li class="nav-item">

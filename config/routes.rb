@@ -15,6 +15,9 @@ Rails.application.routes.draw do
 
     post "why/:id" => "whies#create", as: "create_why"
     delete "why/:id" => "whies#destroy", as: "destroy_why"
+    
+    get 'guest_login', to: 'guest_sessions#guest_login'
+    
   end
 
   # Managing routes for admin users
