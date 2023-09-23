@@ -5,13 +5,13 @@ class Post < ApplicationRecord
 
 
  def old?
-    threshold = 1.days 
+    threshold = 1.days
     created_at <= threshold.ago
  end
- 
- 
+
+
  def self.delete_oldest_post
-    oldest_post = Post.where('created_at <= ?', 5.days.ago).order(created_at: :asc).first
+    oldest_post = Post.where('created_at <= ?', 1.days.ago).order(created_at: :asc).first
 
     if oldest_post
       oldest_post.destroy
