@@ -65,6 +65,10 @@ gem 'kaminari','~> 1.2.1'
 
 gem 'ransack'
 
+
+gem 'whenever', require: false
+
+
 gem 'dotenv-rails'
 group :production do
   gem 'mysql2'

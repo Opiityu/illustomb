@@ -4,6 +4,23 @@ class Post < ApplicationRecord
   has_many :whies, dependent: :destroy
 
 
+ def old?
+    threshold = 1.days 
+    created_at <= threshold.ago
+ end
+ 
+ 
+ def self.delete_oldest_post
+    oldest_post = Post.where('created_at <= ?', 5.days.ago).order(created_at: :asc).first
+
+    if oldest_post
+      oldest_post.destroy
+      Rails.logger.info("Deleted post with ID #{oldest_post.id}")
+    else
+      Rails.logger.info("No old posts to delete")
+    end
+end
+
 
   def self.looks(search, word)
     case search

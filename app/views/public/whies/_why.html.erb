@@ -2,16 +2,16 @@
   <% if current_end_user.whied_by?(post.id) %>
     <td>
       <%= link_to public_destroy_why_path(post), method: :DELETE, remote: true do %>
-        <i class="fa fa-heart unlike-btn"></i>
+        <i class="fa fa-cross unlike-btn"></i>
       <% end %>
-        <%= post.whies.count %> R.I.P
+      <%= post.whies.count %> R.I.P
     </td>
-<% else %>
+  <% else %>
     <td>
       <%= link_to public_create_why_path(post), method: :POST, remote: true do %>
-        <i class="fa fa-heart like-btn"></i>
+        <i class="fa fa-cross like-btn"></i>
       <% end %>
-        <%= post.whies.count %> R.I.P
+      <%= post.whies.count %> R.I.P
     </td>
   <% end %>
 <% end %>
