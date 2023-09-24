@@ -3,7 +3,7 @@
     <div class="col-md-6 mx-auto">
       <div class="card">
         <div class="card-body">
-          <h1 class="text-center">画像投稿フォーム</h1>
+          <h1 class="text-center font-gothic">埋葬する</h1>
           <%= form_with model: @post, url: public_posts_path, method: :post, local: true do |f| %>
             <h4>画像</h4>
             <%= f.file_field :image, accept: "image/*" %>
@@ -11,7 +11,7 @@
             <%= f.text_field :name %>
             <h4>説明</h4>
             <%= f.text_area :caption %>
-            <%= f.submit '投稿', class: 'btn btn-primary btn-block mt-3' %>
+            <%= f.submit '埋葬', class: 'btn btn-primary btn-block mt-3' %>
           <% end %>
         </div>
       </div>

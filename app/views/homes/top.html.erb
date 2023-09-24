@@ -3,12 +3,18 @@
     <div class="col-md-8">
       <div class="swiper">
         <div class="swiper-wrapper">
-          <% @posts.sort_by(&:created_at).reverse.take(3).each do |post| %>
+          <% if @posts.sort_by(&:created_at).reverse.take(3).empty? %>
             <div class="swiper-slide">
-              <%= link_to public_post_path(post), class: 'post-link' do %>
-                <%= image_tag post.get_image, class: 'img-fluid', size: '400x400' %>
-              <% end %>
+              <div class="alert alert-warning">何も埋葬されていません</div>
             </div>
+          <% else %>
+            <% @posts.sort_by(&:created_at).reverse.take(3).each do |post| %>
+              <div class="swiper-slide">
+                <%= link_to public_post_path(post), class: 'post-link' do %>
+                  <%= image_tag post.get_image, class: 'img-fluid', size: '400x400' %>
+                <% end %>
+              </div>
+            <% end %>
           <% end %>
         </div>
         <!-- Swiper Pagination and Navigation -->
@@ -20,24 +26,27 @@
   </div>
 </div>
 
-
-
-<% liked_posts = @posts.select { |post| post.whies.count > 0 } %>
 <% liked_posts = @posts.select { |post| post.whies.count > 0 } %>
 <div class="most-liked-posts text-center">
-  <h2 class="text-center">Top R.I.P</h2>
+  <h2 class="head">Top R.I.P</h2>
   <div class="row">
-    <% liked_posts.sort_by { |post| -post.whies.count }.take(20).each do |post| %>
-      <div class="col-2">
-        <div class="card mb-3">
-          <%= link_to public_post_path(post), class: 'post-link' do %>
-            <%= image_tag post.get_image, class: 'card-img-top', alt: 'Post Image' %>
-          <% end %>
-          <div class="card-body">
-            <p class="card-text">R.I.P x <%= post.whies.count %></p>
+    <% if liked_posts.empty? %>
+      <div class="col-12">
+        <div class="alert alert-warning">何も埋葬されていません</div>
+      </div>
+    <% else %>
+      <% liked_posts.sort_by { |post| -post.whies.count }.take(20).each do |post| %>
+        <div class="col-2">
+          <div class="card mb-3">
+            <%= link_to public_post_path(post), class: 'post-link' do %>
+              <%= image_tag post.get_image, class: 'card-img-top', alt: 'Post Image' %>
+            <% end %>
+            <div class="card-body">
+              <p class="card-text">R.I.P x <%= post.whies.count %></p>
+            </div>
           </div>
         </div>
-      </div>
+      <% end %>
     <% end %>
   </div>
 </div>

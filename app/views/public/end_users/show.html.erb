@@ -19,26 +19,31 @@
 
 <div class="container mt-4">
   <div class="cover-index">
-    <h1 class="font-weight-normal mt-3 text-center">マイイラスト</h1>
+    <h1 class="font-weight-normal mt-3 text-center font-gothic">埋葬したもの</h1>
     <div class="row justify-content-center">
-      <% @posts.each do |post| %>
-      <div class="col-md-4 mb-4"> <!-- Adjust the column size (e.g., col-md-4) -->
-        <div class="card">
-          <%= link_to public_post_path(post.id) do %>
-            <%= image_tag post.get_image, class: 'card-img-top', alt: 'Post Image' %>
-          <% end %>
-          <div class="card-body">
-            <p class="card-text">イラスト名：<%= post.name %></p>
-            <p class="card-text">説明：<%= post.caption %></p>
-            <div id="likes_buttons_<%= post.id %>">
-              <%= render partial: "public/whies/why", locals: { post: post } %>
+      <% if @posts.empty? %>
+        <div class="col-md-12 text-center" style="margin-top: 20px; padding: 20px;">
+          <div class="alert alert-warning">何も埋葬されていません</div> 
+        </div>
+      <% else %>
+        <% @posts.each do |post| %>
+          <div class="col-md-4 mb-4"> 
+            <div class="card">
+              <%= link_to public_post_path(post.id) do %>
+                <%= image_tag post.get_image, class: 'card-img-top', alt: 'Post Image' %>
+              <% end %>
+              <div class="card-body">
+                <p class="card-text">イラスト名：<%= post.name %></p>
+                <p class="card-text">説明：<%= post.caption %></p>
+                <div id="likes_buttons_<%= post.id %>">
+                  <%= render partial: "public/whies/why", locals: { post: post } %>
+                </div>
+              </div>
             </div>
           </div>
-        </div>
-      </div>
+        <% end %>
       <% end %>
     </div>
   </div>
   <%= paginate @posts %>
 </div>
-

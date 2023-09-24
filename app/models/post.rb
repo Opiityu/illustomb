@@ -3,7 +3,7 @@ class Post < ApplicationRecord
   belongs_to :end_user
   has_many :whies, dependent: :destroy
 
-
+#Whwnwver実装時に追加
  def old?
     threshold = 1.days
     created_at <= threshold.ago
