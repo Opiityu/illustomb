@@ -24,13 +24,18 @@ class Public::EndUsersController < ApplicationController
   end
 
   def withdraw
-    @end_user = EndUser.find(current_end_user.id)
-    # is_deletedカラムをtrueに変更することにより削除フラグを立てる
-    @end_user.update(is_deleted: true)
+  @end_user = EndUser.find(current_end_user.id)
+  
+  if @end_user.destroy
     reset_session
     flash[:notice] = "退会処理を実行いたしました"
     redirect_to root_path
+  else
+    flash[:alert] = "退会処理に失敗しました"
+    redirect_to public_end_user_path(@end_user)
   end
+  end
+
 
 
 

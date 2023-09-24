@@ -3,26 +3,27 @@
     <h1 class="font-weight-normal mt-3 text-center">投稿一覧</h1>
     <div class="row justify-content-center">
       <% @posts.each do |post| %>
-      <% if post.end_user %>
-      <div class="col-md-4">
-  <div class="one-post">
-    <%= link_to public_post_path(post.id) do %>
-      <%= image_tag post.get_image, size: '300x200' %>
-    <% end %>
-    <p>イラスト名：<%= post.name %></p>
-    <p>説明：<%= post.caption %></p>
-    <p>ユーザーネーム：<%= post.end_user.name %></p>
+        <% if post.end_user %>
+          <div class="col-md-4">
+            <div class="one-post">
+              <%= link_to public_post_path(post.id) do %>
+                <%= image_tag post.get_image, size: '300x200' %>
+              <% end %>
+              <p>イラスト名：<%= post.name %></p>
+              <p>説明：<%= post.caption %></p>
+              <p>ユーザーネーム：<%= post.end_user.name %></p>
 
-    <!-- なんでボタン-->
-  　　<div id="likes_buttons_<%= post.id %>">
-          <%= render partial: "public/whies/why", locals: { post: post } %>
-        </div>
-  </div>
-</div>
-
-      <% end %>
+              <% if admin_signed_in? %>
+                <%= link_to 'Delete', admin_post_path(post), method: :delete, data: { confirm: 'Are you sure you want to delete this post?' }, class: 'btn btn-danger' %>
+              <% end %>
+            </div>
+          </div>
+        <% end %>
       <% end %>
     </div>
   </div>
 </div>
 
+<div class="pagination text-center">
+  <%= paginate @posts %>
+</div>

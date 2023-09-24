@@ -1,7 +1,7 @@
 Rails.application.routes.draw do
   namespace :admin do
-    get 'end_users/index'
-    get 'end_users/show'
+    resources :end_users, only: [:index, :show, :destroy]
+    resources :posts, only: [:index, :destroy]
   end
 
   namespace :public do
@@ -10,14 +10,14 @@ Rails.application.routes.draw do
 
     # 退会確認画面
     get '/check' => 'end_users#check'
-    # 論理削除用
+    # ユーザー削除用
     patch '/withdraw' => 'end_users#withdraw'
 
     post "why/:id" => "whies#create", as: "create_why"
     delete "why/:id" => "whies#destroy", as: "destroy_why"
-    
+
     get 'guest_login', to: 'guest_sessions#guest_login'
-    
+
   end
 
   # Managing routes for admin users
