@@ -25,11 +25,6 @@
 
 
 
-<!-- Google Font -->
-<!--<link rel="preconnect" href="https://fonts.googleapis.com">-->
-<!--<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>-->
-<!--<link href="https://fonts.googleapis.com/css2?family=Fira+Sans:ital,wght@1,200&display=swap" rel="stylesheet">-->
-
 
   <%= javascript_pack_tag 'script' %>
 </head>
@@ -122,27 +117,28 @@
     <% end %>
     <%= yield %>
   </main>
-  <footer class="bg-dark text-white pt-5 pb-4">
-    <div class="container">
-      <div class="row no-gutters">
-        <div class="col-md-4">
-          <p>イラストたちの墓場</p>
-          <%= image_tag('logo.png', size: '70x70') %>
-        </div>
-        <div class="col-md-8">
-          <h6 class="text-white mt-2 mb-3">Link</h6>
-          <ul class="p-0 list-unstyled">
-            <li>
-              <a href="" title="About" class="text-white-50"></a>
-            </li>
-            <li>
-              <a href="" title="License informations" class="text-white-50">ポリシー</a>
-            </li>
-          </ul>
-        </div>
+  <footer class="bg-dark text-white pt-5 pb-4 fixed-bottom">
+  <div class="container">
+    <div class="row no-gutters">
+      <div class="col-md-4">
+        <p>ボツ絵よ安らかに。。。</p>
+        <%= image_tag('logo.png', size: '70x70') %>
+      </div>
+      <div class="col-md-8">
+        <h6 class="text-white mt-2 mb-3"></h6>
+        <ul class="p-0 list-unstyled">
+          <li>
+            <a href="" title="About" class="text-white-50"></a>
+          </li>
+          <li>
+            <a href="" title="License information" class="text-white-50">Copyright © 2023 opiityutama All Rights Reserved.</a>
+          </li>
+        </ul>
       </div>
     </div>
-  </footer>
+  </div>
+</footer>
+
   <%= javascript_pack_tag 'script' %>
 </body>
 </html>
