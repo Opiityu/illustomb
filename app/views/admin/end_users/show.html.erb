@@ -5,11 +5,11 @@
       <div class="d-flex align-items-center">
         <table class="table table-borderless">
           <tr>
-            <th>会員ID</td>
+            <th>会員ID</th>
             <td><%= @end_user.id %></td>
           </tr>
           <tr>
-            <th>お名前</td>
+            <th>お名前</th>
             <td><%= @end_user.name %></td>
           </tr>
           <tr>
@@ -17,15 +17,15 @@
             <td><%= @end_user.email %></td>
           </tr>
           <tr>
-    <th>投稿一覧</th>
-    <td>
-      <ul>
-        <% @posts.each do |post| %>
-          <%= image_tag post.image %>
-        <% end %>
-      </ul>
-    </td>
-  </tr>
+            <th>投稿一覧</th>
+            <td>
+              <ul>
+                <% @posts.each do |post| %>
+                  <%= image_tag post.image %>
+                <% end %>
+              </ul>
+            </td>
+          </tr>
         </table>
       </div>
     </div>

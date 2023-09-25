@@ -6,30 +6,16 @@
   <%= csrf_meta_tags %>
   <%= csp_meta_tag %>
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-
   <script src="https://kit.fontawesome.com/e8eca068ae.js" crossorigin="anonymous"></script>
   <%= stylesheet_pack_tag 'application', media: 'all', 'data-turbolinks-track': 'reload' %>
   <%= javascript_pack_tag 'application', 'data-turbolinks-track': 'reload' %>
-
   <!--swiper導入時に追加-->
-  <!-- Include Swiper CSS -->
   <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/swiper@8/swiper-bundle.min.css" />
   <script src="https://cdn.jsdelivr.net/npm/swiper@8/swiper-bundle.min.js"></script>
-
-  <!--font -->
-<!--<link href="https://fonts.googleapis.com/css2?family=Your+Chosen+Font&display=swap" rel="stylesheet">-->
-
-
-
   <link rel="stylesheet" type="text/css" href="/assets/style.css">
-
-
-
-
   <%= javascript_pack_tag 'script' %>
 </head>
-
-<body class="d-flex flex-column vh-100 font-dot">
+<body class="d-flex flex-column min-vh-100 font-dot">
   <header class="shadow-sm">
     <nav class="navbar navbar-expand-lg navbar-light">
       <div class="container">
@@ -79,9 +65,9 @@
               <%= link_to '<i class="fa-solid fa-right-to-bracket"></i> ログイン'.html_safe, new_end_user_session_path, class: 'nav-link text-dark' %>
             </li>
             <li class="nav-item">
-            <!-- Add a link for Guest Login -->
-            <%= link_to 'Guest Login', public_guest_login_path, class: 'nav-link text-dark' %>
-          </li>
+              <!-- Guest Login -->
+              <%= link_to 'ゲストログイン', public_guest_login_path, class: 'nav-link text-dark' %>
+            </li>
             <% end %>
             <% if end_user_signed_in? %>
             <li class="nav-item">
@@ -100,16 +86,17 @@
       </div>
     </nav>
   </header>
-  <main class="bg-light">
-
+  <main class="flex-grow-1 bg-light">
     <div class="container">
       <div class="row justify-content-end">
         <div class="col-md-6">
+          <!-- 検索用 -->
           <div class="search_form">
             <%= form_with url: search_path, local: true, method: :get do |f| %>
               <%= f.search_field :word, value: params[:word], placeholder: "イラストを検索" %>
               <%= f.select :search, options_for_select([["完全一致","perfect_match"], ["前方一致","forward_match"], ["後方一致","backward_match"], ["部分一致","partial_match"]]) %>
               <%= f.submit "検索", class: "btn btn-primary" %>
+            </div>
           </div>
         </div>
       </div>
@@ -117,28 +104,27 @@
     <% end %>
     <%= yield %>
   </main>
-  <footer class="bg-dark text-white pt-5 pb-4 fixed-bottom">
-  <div class="container">
-    <div class="row no-gutters">
-      <div class="col-md-4">
-        <p>ボツ絵よ安らかに。。。</p>
-        <%= image_tag('logo.png', size: '70x70') %>
-      </div>
-      <div class="col-md-8">
-        <h6 class="text-white mt-2 mb-3"></h6>
-        <ul class="p-0 list-unstyled">
-          <li>
-            <a href="" title="About" class="text-white-50"></a>
-          </li>
-          <li>
-            <a href="" title="License information" class="text-white-50">Copyright © 2023 opiityutama All Rights Reserved.</a>
-          </li>
-        </ul>
+  <footer class="bg-dark text-white py-3">
+    <div class="container">
+      <div class="row no-gutters">
+        <div class="col-md-4">
+          <p>ボツ絵よ安らかに。。。</p>
+          <%= image_tag('logo.png', size: '70x70') %>
+        </div>
+        <div class="col-md-8">
+          <h6 class="text-white mt-2 mb-3"></h6>
+          <ul class="p-0 list-unstyled">
+            <li>
+              <a href="" title="About" class="text-white-50"></a>
+            </li>
+            <li>
+              <a href="" title="License information" class="text-white-50">Copyright © 2023 opiityutama All Rights Reserved.</a>
+            </li>
+          </ul>
+        </div>
       </div>
     </div>
-  </div>
-</footer>
-
+  </footer>
   <%= javascript_pack_tag 'script' %>
 </body>
 </html>

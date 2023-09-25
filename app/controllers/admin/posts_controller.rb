@@ -10,5 +10,5 @@ class Admin::PostsController < ApplicationController
   end
 
   private
-  # Other private methods if needed
+  
 end

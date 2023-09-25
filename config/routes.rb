@@ -1,4 +1,6 @@
 Rails.application.routes.draw do
+  root to: "homes#top"
+
   namespace :admin do
     resources :end_users, only: [:index, :show, :destroy]
     resources :posts, only: [:index, :destroy]
@@ -17,7 +19,6 @@ Rails.application.routes.draw do
     delete "why/:id" => "whies#destroy", as: "destroy_why"
 
     get 'guest_login', to: 'guest_sessions#guest_login'
-
   end
 
   # Managing routes for admin users
@@ -32,15 +33,5 @@ Rails.application.routes.draw do
   }
 
   get 'homes/about'
-  root to: "homes#top"
-
-  # For details on the DSL available within this file, see https://guides.rubyonrails.org/routing.html
-
-  namespace :admin do
-    resources :posts, only: [:index, :destroy]
-    resources :end_users, only: [:index, :show]
-  end
-
-  # Search functionality
   get "search" => "searches#search"
 end

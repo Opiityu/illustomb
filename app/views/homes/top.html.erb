@@ -1,6 +1,7 @@
 <div class="container">
   <div class="row">
     <div class="col-md-8">
+      <h2 class="text-center">新着埋葬絵</h2>
       <div class="swiper">
         <div class="swiper-wrapper">
           <% if @posts.sort_by(&:created_at).reverse.take(3).empty? %>
