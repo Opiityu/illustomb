@@ -12,6 +12,25 @@ class Public::SessionsController < Devise::SessionsController
   # def create
   #   super
   # end
+  
+  
+  # POST /resource/sign_in
+  def create
+    super do |resource|
+      if end_user_signed_in?
+        flash[:notice] = 'ログインしました'
+      else
+        flash[:alert] = 'ログインに失敗しました'
+      end
+    end
+  end
+
+  # DELETE /resource/sign_out
+  def destroy
+    super do
+      flash[:notice] = 'ログアウトしました'
+    end
+  end
 
   # DELETE /resource/sign_out
   # def destroy

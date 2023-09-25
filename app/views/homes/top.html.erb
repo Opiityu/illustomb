@@ -1,6 +1,15 @@
 <div class="container">
   <div class="row">
     <div class="col-md-8">
+      <% if flash[:notice].present? %>
+        <div class="alert alert-success">
+          <%= flash[:notice] %>
+        </div>
+      <% elsif flash[:alert].present? %>
+        <div class="alert alert-danger">
+          <%= flash[:alert] %>
+        </div>
+      <% end %>
       <h2 class="text-center">新着埋葬絵</h2>
       <div class="swiper">
         <div class="swiper-wrapper">
