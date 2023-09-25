@@ -5,13 +5,13 @@ class Post < ApplicationRecord
 
 #Whenever実装時に追加
  def old?
-    threshold = 1.days
+    threshold = 30.days
     created_at <= threshold.ago
  end
 
 
  def self.delete_oldest_post
-    oldest_post = Post.where('created_at <= ?', 1.days.ago).order(created_at: :asc).first
+    oldest_post = Post.where('created_at <= ?', 30.days.ago).order(created_at: :asc).first
 
     if oldest_post
       oldest_post.destroy
@@ -19,9 +19,9 @@ class Post < ApplicationRecord
     else
       Rails.logger.info("No old posts to delete")
     end
-end
+ end
 
-
+#検索機能用
   def self.looks(search, word)
     case search
     when "perfect_match"
