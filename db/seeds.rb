@@ -29,8 +29,28 @@ end
 
 
 
-Post.find_or_create_by!(name: "nocopyright") do |post|
+Post.find_or_create_by!(name: "ノーコピーライトガール１") do |post|
   post.image = ActiveStorage::Blob.create_and_upload!(io: File.open("#{Rails.root}/db/fixtures/sample-post1.jpg"), filename:"sample-post1.jpg")
+  post.caption = 'nocopyright'
+  post.end_user = james
+end
+Post.find_or_create_by!(name: "ノーコピーライトガール2") do |post|
+  post.image = ActiveStorage::Blob.create_and_upload!(io: File.open("#{Rails.root}/db/fixtures/sample-post2.jpg"), filename:"sample-post2.jpg")
+  post.caption = 'nocopyright'
+  post.end_user = james
+end
+Post.find_or_create_by!(name: "ノーコピーライトガール3") do |post|
+  post.image = ActiveStorage::Blob.create_and_upload!(io: File.open("#{Rails.root}/db/fixtures/sample-post3.jpg"), filename:"sample-post3.jpg")
+  post.caption = 'nocopyright'
+  post.end_user = james
+end
+Post.find_or_create_by!(name: "ノーコピーライトガール4") do |post|
+  post.image = ActiveStorage::Blob.create_and_upload!(io: File.open("#{Rails.root}/db/fixtures/sample-post4.jpg"), filename:"sample-post4.jpg")
+  post.caption = 'nocopyright'
+  post.end_user = james
+end
+Post.find_or_create_by!(name: "ノーコピーライトガール5") do |post|
+  post.image = ActiveStorage::Blob.create_and_upload!(io: File.open("#{Rails.root}/db/fixtures/sample-post5.jpg"), filename:"sample-post5.jpg")
   post.caption = 'nocopyright'
   post.end_user = james
 end
