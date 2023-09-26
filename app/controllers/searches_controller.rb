@@ -1,8 +1,6 @@
 class SearchesController < ApplicationController
-
   def search
     @range = params[:range]
-    @posts = Post.looks(params[:search], params[:word])
+    @posts = Post.forward_match(params[:word])
   end
-
 end

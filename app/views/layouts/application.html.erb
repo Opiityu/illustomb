@@ -86,24 +86,25 @@
       </div>
     </nav>
   </header>
-  <main class="flex-grow-1 bg-light">
-    <div class="container">
-      <div class="row justify-content-end">
-        <div class="col-md-6">
-          <!-- 検索用 -->
-          <div class="search_form">
-            <%= form_with url: search_path, local: true, method: :get do |f| %>
-              <%= f.search_field :word, value: params[:word], placeholder: "イラストを検索" %>
-              <%= f.select :search, options_for_select([["完全一致","perfect_match"], ["前方一致","forward_match"], ["後方一致","backward_match"], ["部分一致","partial_match"]]) %>
-              <%= f.submit "検索", class: "btn btn-primary" %>
-            </div>
-          </div>
+  
+<main class="flex-grow-1 bg-light">
+  <div class="container">
+    <div class="row justify-content-end">
+      <div class="col-md-6">
+        <!-- 検索用 -->
+        <div class="search_form">
+          <%= form_with url: search_path, method: :get do |f| %>
+            <%= f.search_field :word, value: params[:word], placeholder: "イラストを検索" %>
+            <%= hidden_field_tag :search, "forward_match" %>
+            <%= f.submit "検索", class: "btn btn-primary" %>
+          <% end %>
         </div>
       </div>
     </div>
-    <% end %>
-    <%= yield %>
-  </main>
+  </div>
+  <%= yield %>
+</main>
+
   <footer class="bg-dark text-white py-3">
     <div class="container">
       <div class="row no-gutters">

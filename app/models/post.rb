@@ -20,22 +20,10 @@ class Post < ApplicationRecord
       Rails.logger.info("No old posts to delete")
     end
  end
-
-#検索機能用
-  def self.looks(search, word)
-    case search
-    when "perfect_match"
-      where("name LIKE?","#{word}")
-    when "forward_match"
-      where("name LIKE?","#{word}%")
-    when "backward_match"
-      where("name LIKE?","%#{word}")
-    when "partial_match"
-      where("name LIKE?","%#{word}%")
-    else
-      all
-    end
-  end
+ 
+ def self.forward_match(word)
+    where("name LIKE ?", "#{word}%")
+ end
 
 
   def get_image

@@ -24,7 +24,7 @@ class EndUser < ApplicationRecord
     end
   end
 
-  # なんで？機能実装時に追加
+  # なんで？機能実装時に追加→RIPボタンに名称変更しています。
   def whied_by?(post_id)
     whies.where(post_id: post_id).exists?
   end
@@ -39,12 +39,12 @@ class EndUser < ApplicationRecord
   
   #ゲストログイン機能関係
   def self.create_guest_user
-    unique_name = "Guest_#{SecureRandom.hex(4)}" # Generate a unique name
-    unique_email = "guest_#{SecureRandom.hex(4)}@example.com" # Generate a unique email
+    unique_name = "Guest_#{SecureRandom.hex(4)}" 
+    unique_email = "guest_#{SecureRandom.hex(4)}@example.com" 
     guest_user = create!(
-      name: unique_name, # Set a default guest name
-      email: unique_email, # Use a unique email address
-      password: Devise.friendly_token[0, 20] # Generate a random password
+      name: unique_name,
+      email: unique_email, 
+      password: Devise.friendly_token[0, 20] 
     )
   end
 end

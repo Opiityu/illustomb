@@ -18,3 +18,5 @@ class Public::WhiesController < ApplicationController
 
 
 end
+
+###なんでボタンからRIPボタンに名称変更しています####
