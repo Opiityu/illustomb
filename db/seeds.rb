@@ -92,4 +92,21 @@ end
 
 
 
+eve = EndUser.find_or_create_by!(email: "eve@example.com") do |end_user|
+  end_user.name = "eve"
+  end_user.password = "password"
+  end_user.is_deleted = false
+  end_user.profile_image = ActiveStorage::Blob.create_and_upload!(
+  io: File.open("#{Rails.root}/db/fixtures/sample-user3.jpg"),
+  filename: "sample-user3.jpg"
+)
+end
 
+(1..5).each do |i|
+  name = "kaiga#{i}"
+  Post.find_or_create_by!(name: name) do |post|
+    post.image = ActiveStorage::Blob.create_and_upload!(io: File.open("#{Rails.root}/db/fixtures/#{name}.jpg"), filename: "#{name}.jpg")
+    post.caption = '絵画です'
+    post.end_user = eve
+  end
+end
