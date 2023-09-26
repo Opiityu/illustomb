@@ -62,6 +62,10 @@ gem 'devise'
 
 gem 'kaminari','~> 1.2.1'
 
+# テストデータ作成時
+gem 'factory_bot_rails'
+gem 'faker'
+gem 'active_storage_validations'
 
 
 
