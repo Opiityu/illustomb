@@ -35,6 +35,8 @@
   </div>
 </div>
 
+<!-- RIPボタンの数の上位を表示 -->
+<!-- liked,whyなどは途中で名称変更のためそのままです-->
 <% liked_posts = @posts.select { |post| post.whies.count > 0 } %>
 <div class="most-liked-posts text-center">
   <h2 class="head">Top R.I.P</h2>
@@ -44,7 +46,7 @@
         <div class="alert alert-warning">何も埋葬されていません</div>
       </div>
     <% else %>
-      <% liked_posts.sort_by { |post| -post.whies.count }.take(20).each do |post| %>
+      <% liked_posts.sort_by { |post| -post.whies.count }.take(18).each do |post| %>
         <div class="col-2">
           <div class="card mb-3">
             <%= link_to public_post_path(post), class: 'post-link' do %>
