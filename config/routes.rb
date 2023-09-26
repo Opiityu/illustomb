@@ -1,5 +1,6 @@
 Rails.application.routes.draw do
   root to: "homes#top"
+  get 'homes/about'
 
   namespace :admin do
     resources :end_users, only: [:index, :show, :destroy]
@@ -21,17 +22,17 @@ Rails.application.routes.draw do
     get 'guest_login', to: 'guest_sessions#guest_login'
   end
 
-  # Managing routes for admin users
+
   devise_for :admin, skip: [:registrations, :passwords], controllers: {
     sessions: "admin/sessions"
   }
 
-  # Managing routes for end users
+
   devise_for :end_users, skip: [:passwords], controllers: {
     registrations: "public/registrations",
     sessions: 'public/sessions'
   }
 
-  get 'homes/about'
+
   get "search" => "searches#search"
 end
