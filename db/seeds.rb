@@ -13,7 +13,7 @@ Admin.create!(
 
 
 
-
+#end_userのテストデータ
 
 james = EndUser.find_or_create_by!(email: "james@example.com") do |end_user|
   end_user.name = "James"
@@ -24,8 +24,6 @@ james = EndUser.find_or_create_by!(email: "james@example.com") do |end_user|
   filename: "sample-user2.jpg"
 )
 end
-
-
 
 
 
@@ -54,3 +52,44 @@ Post.find_or_create_by!(name: "ノーコピーライトガール5") do |post|
   post.caption = 'nocopyright'
   post.end_user = james
 end
+
+
+mike = EndUser.find_or_create_by!(email: "mike@example.com") do |end_user|
+  end_user.name = "mike"
+  end_user.password = "password"
+  end_user.is_deleted = false
+  end_user.profile_image = ActiveStorage::Blob.create_and_upload!(
+  io: File.open("#{Rails.root}/db/fixtures/sample-user2.jpg"),
+  filename: "sample-user1.jpg"
+)
+end
+
+Post.find_or_create_by!(name: "rekisi1") do |post|
+  post.image = ActiveStorage::Blob.create_and_upload!(io: File.open("#{Rails.root}/db/fixtures/rekisi1.jpg"), filename:"rekisi1.jpg")
+  post.caption = '歴史の人物です'
+  post.end_user = mike
+end
+Post.find_or_create_by!(name: "rekisi2") do |post|
+  post.image = ActiveStorage::Blob.create_and_upload!(io: File.open("#{Rails.root}/db/fixtures/rekisi2.jpg"), filename:"rekisi2.jpg")
+  post.caption = '歴史の人物です'
+  post.end_user = mike
+end
+Post.find_or_create_by!(name: "rekisi3") do |post|
+  post.image = ActiveStorage::Blob.create_and_upload!(io: File.open("#{Rails.root}/db/fixtures/rekisi3.jpg"), filename:"rekisi3.jpg")
+  post.caption = '歴史の人物です'
+  post.end_user = mike
+end
+Post.find_or_create_by!(name: "rekisi4") do |post|
+  post.image = ActiveStorage::Blob.create_and_upload!(io: File.open("#{Rails.root}/db/fixtures/rekisi4.jpg"), filename:"rekisi4.jpg")
+  post.caption = '歴史の人物です'
+  post.end_user = mike
+end
+Post.find_or_create_by!(name: "rekisi5") do |post|
+  post.image = ActiveStorage::Blob.create_and_upload!(io: File.open("#{Rails.root}/db/fixtures/rekisi5.jpg"), filename:"rekisi5.jpg")
+  post.caption = '歴史の人物です'
+  post.end_user = mike
+end
+
+
+
+
