@@ -110,3 +110,26 @@ end
     post.end_user = eve
   end
 end
+
+
+
+
+
+ai = EndUser.find_or_create_by!(email: "ai@example.com") do |end_user|
+  end_user.name = "ai"
+  end_user.password = "password"
+  end_user.is_deleted = false
+  end_user.profile_image = ActiveStorage::Blob.create_and_upload!(
+  io: File.open("#{Rails.root}/db/fixtures/sample-user4.jpg"),
+  filename: "sample-user4.jpg"
+)
+end
+
+(1..5).each do |i|
+  name = "AI#{i}"
+  Post.find_or_create_by!(name: name) do |post|
+    post.image = ActiveStorage::Blob.create_and_upload!(io: File.open("#{Rails.root}/db/fixtures/#{name}.jpg"), filename: "#{name}.jpg")
+    post.caption = 'AI生成です'
+    post.end_user = ai
+  end
+end
