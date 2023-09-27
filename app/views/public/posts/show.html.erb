@@ -16,6 +16,12 @@
         <div class="card-footer" id="likes_buttons_<%= @post.id %>">
           <%= render partial: "public/whies/why", locals: { post: @post } %>
         </div>
+
+
+        <div class="card-footer">
+          <%= link_to "戻る", public_posts_path, class: 'btn btn-secondary btn-sm' %>
+        </div>
+
       </div>
     </div>
   </div>
