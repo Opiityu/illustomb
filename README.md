@@ -20,7 +20,7 @@
 - ボツ絵を見て、何が失敗なのかと勉強したい時　等
 
 ## 開発現場
-- OS : Mac(Ventura 13.5.1)
+- OS : Amazon Linux2
 - 言語 : HTML,CSS,JavaScript,Ruby,SQL
 - フレームワーク : Ruby on Rails
 - JSライブラリー : JQuery
