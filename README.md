@@ -30,5 +30,11 @@
 - JSライブラリー : JQuery
 - IDE : Cloud9
 
-## 使用素材
-未定（後ほど記載予定）
+## 使用素材 (Materials Used)
+
+以下の素材をフリーイラスト素材として使用しました：
+
+- [GAHAG | 著作権フリー写真・イラスト素材集](https://gahag.net/tag/%E3%83%95%E3%83%AA%E3%83%BC%E7%B5%B5%E7%94%BB/)
+- [ノーコピーライトガール](https://fromtheasia.com/illustration/nocopyrightgirl)
+- [いらすとや](https://www.irasutoya.com/)
+- [Artguru](https://www.artguru.ai/jp/)
