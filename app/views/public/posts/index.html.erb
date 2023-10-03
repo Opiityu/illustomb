@@ -7,7 +7,7 @@
           <div class="alert alert-warning">何も埋葬されていません</div>
         </div>
       <% else %>
-        <% @posts.each do |post| %>
+        <% @posts.order(created_at: :desc).each do |post| %>
           <% if post.end_user %>
             <div class="col-md-4">
               <div class="one-post">
@@ -16,7 +16,6 @@
                 <% end %>
                 <p>イラスト名：<%= post.name %></p>
                 <p>説明：<%= post.caption %></p>
-                
 
                 <!-- RIPボタン -->
                 <div id="likes_buttons_<%= post.id %>">
