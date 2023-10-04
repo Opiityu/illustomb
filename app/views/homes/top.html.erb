@@ -21,7 +21,7 @@
             <% @posts.sort_by(&:created_at).reverse.take(3).each do |post| %>
               <div class="swiper-slide">
                 <%= link_to public_post_path(post), class: 'post-link' do %>
-                  <%= image_tag post.get_image, class: 'img-fluid', size: '400x400' %>
+                  <%= image_tag post.get_image, class: "top-swiper-img" %>
                 <% end %>
               </div>
             <% end %>
@@ -50,7 +50,7 @@
         <div class="col-2">
           <div class="card mb-3">
             <%= link_to public_post_path(post), class: 'post-link' do %>
-              <%= image_tag post.get_image, class: 'card-img-top', alt: 'Post Image' %>
+              <%= image_tag post.get_image, class: 'card-img-top', class: 'img-fluid', class: "top-rip-img", alt: 'Post Image' %>
             <% end %>
             <div class="card-body">
               <p class="card-text"><i class="fa fa-cross like-btn"></i> x <%= post.whies.count %></p>
